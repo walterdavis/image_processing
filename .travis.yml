@@ -13,10 +13,7 @@ script: rake test
 
 cache: bundler
 
-addons:
-  apt:
-    packages:
-      - imagemagick
-      - libmagickcore-dev
-      - libmagickwand-dev
-      - graphicsmagick
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install imagemagick libmagickcore-dev libmagickwand-dev
+  - sudo apt-get install -qq graphicsmagick
