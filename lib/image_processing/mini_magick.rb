@@ -217,6 +217,8 @@ module ImageProcessing
     # and at the end return a File object.
     def with_minimagick(image)
       image = ::MiniMagick::Image.new(image.path, image)
+      image = image.layers.first if image.layers.any?
+      image = image.pages.first if image.pages.any?
       yield image
       tempfile = image.instance_variable_get("@tempfile")
       tempfile.open if tempfile.is_a?(Tempfile) # for aws-sdk
